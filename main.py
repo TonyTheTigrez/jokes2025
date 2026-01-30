@@ -1,37 +1,79 @@
 
+import subprocess
 
 
-# make this performance task ready for submission
-# To give the user a fun experience hearing knock knock jokes
 
-joke = input("Do you want to hear a joke? ")
-if joke == "no":
-    print("Okay suit yourself!")
-while joke == "yes":
-    print("Great, Let's Play")
-    question = input("Do you want to hear a joke about robbers, tanks, or pencils? ")
-    if question == "robbers":
-        input("Knock Knock ")
-        input("Calder")
-        print("Calder police - I've been robbed!")
-        joke = input("Do you want to hear another joke or are you finished? ")
-    elif question == "tanks":
-        input("Knock Knock ")
-        input("Tank ")
-        input("You are welcome! ")
-        joke = input("Do you want to hear another joke or are you finished? ")
-    elif question == "pencils":
-        input("Knock Knock ")
-        input("Broken pencil ")
-        input("Nevermind, it's pointless! ")
-        joke = input("Do you want to hear another joke or are you finished? ")
-if joke == "finished":
-    rate = int(input("Please rate our game 1-10! "))
-    final_score = int(rate * 10)
-    print(str(final_score) + " percent satisfaction rate")
-    friend = input("Would you recommend this game to a friend? ")
 
-    if friend == "yes" or friend == "maybe":
-        print("Thanks, we appreciate it. ")
-    else:
-        print("Sorry you did not enjoy it. ")
+
+
+
+
+
+
+        
+def joke_app():
+
+    #User reviews CAN BE APPENDED
+    reviews = []
+
+    #Joke list
+    joke_list = [
+    ["Guess what!", "What?", "Chicken butt!" ],
+    ["Guess who!", "Who?", "Chicken poo!" ],
+    ["Guess why!", "Why?", "Chicken thigh!" ]
+    ]
+
+
+
+
+    # Joke generator
+    def joke_generator(choice):
+        print(joke_list[choice][0])
+        print(joke_list[choice][1])
+        print(joke_list[choice][2])
+
+
+
+    descision = input("Do you want to hear a joke? (Yes or No): ")
+
+
+    if descision.lower() == "no":
+        print("Okay, suit yourself!")
+
+
+    while descision.lower() == "yes":
+        joke_number = int(input("Pick a number between 1 and 3: "))
+        if joke_number < 1:
+            print("Not a valid joke number!") 
+        elif joke_number > 3:
+            print("Not a valid joke number!") 
+        elif joke_number == 1:
+            joke_generator(0)
+        elif joke_number == 2:
+            joke_generator(1)
+        elif joke_number == 3:
+            joke_generator(2)
+        
+        #FUNCTION TO DECIDE IF THEY CHOSE ANOTHER JOKE OR NOT
+        def joke_reviewer(decide):
+            if decide == 1:
+                subprocess.call('reset')
+                print("Heres another one coming right up!")
+            elif decide == 2:
+                review = input("Please write a short review of our app!: ")
+                reviews.append(review)
+                subprocess.call('reset')
+                print("Thank you for using the app!")
+                
+            
+        # MAKES USER CHOOSE BETWEEN ANOTHER JOKE OR FINISHING
+        joke_result = input("Do you want to hear another joke or no? Yes or no:  ")
+        
+        if joke_result.lower() == "yes":
+            joke_reviewer(1)
+            continue
+        elif joke_result.lower() == "no":
+            joke_reviewer(2)
+            break
+
+joke_app()
