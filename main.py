@@ -1,4 +1,4 @@
-
+#imported to clear text
 import subprocess
 
 
@@ -33,21 +33,22 @@ def joke_app():
         print(joke_list[choice][2])
 
 
-
+    #Asks user if they want to her joke
     descision = input("Do you want to hear a joke? (Yes or No): ")
 
-
+    #If no then programs quits
     if descision.lower() == "no":
         print("Okay, suit yourself!")
 
-
+    #if yes starts while loop
     while descision.lower() == "yes":
         joke_number = int(input("Pick a number between 1 and 3: "))
+        #Makes use try again if they input number too low or high
         if joke_number < 1:
             print("Not a valid joke number!") 
         elif joke_number > 3:
             print("Not a valid joke number!") 
-        elif joke_number == 1:
+        elif joke_number == 1: #Depending on number they input it chooses different joke on list
             joke_generator(0)
         elif joke_number == 2:
             joke_generator(1)
@@ -69,6 +70,7 @@ def joke_app():
         # MAKES USER CHOOSE BETWEEN ANOTHER JOKE OR FINISHING
         joke_result = input("Do you want to hear another joke or no? Yes or no:  ")
         
+        #Calls functiion, yes equaling 1 and no equalling 2
         if joke_result.lower() == "yes":
             joke_reviewer(1)
             continue
