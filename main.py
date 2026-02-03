@@ -14,7 +14,7 @@ import subprocess
 def joke_app():
 
     #User reviews CAN BE APPENDED
-    reviews = []
+    reviews = ["It was good!", "Good jokes!"]
 
     #Joke list
     joke_list = [
@@ -65,6 +65,8 @@ def joke_app():
                 reviews.append(review)
                 subprocess.call('reset')
                 print("Thank you for using the app!")
+                print("These are the current reviews:")
+                print(reviews)
                 
             
         # MAKES USER CHOOSE BETWEEN ANOTHER JOKE OR FINISHING
